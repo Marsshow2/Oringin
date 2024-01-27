@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class MovingFloor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed = 2f;
+    public float distance = 5f;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float newPosition = Mathf.PingPong(Time.time * speed, distance * 2) - distance;
+        transform.position = new Vector2(newPosition, transform.position.y);
     }
 }

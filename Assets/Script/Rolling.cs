@@ -13,7 +13,7 @@ public class Rolling : MonoBehaviour
     private float jawForce = 5f;
 
     private float RotationSpeed = 1f;
-    private float moveSpeed = 1.5f;
+    private float moveSpeed = 2f;
 
     public Rigidbody2D thisRigid;
     public GameObject triangle;
@@ -22,8 +22,11 @@ public class Rolling : MonoBehaviour
 
     private bool ground;
 
+    private float startTime;
+
     private void Start()
     {
+        startTime = Time.time;
         GetComponent<SpriteRenderer>().enabled = false;
         scaleY = transform.localScale.y;
         tscaleY = triangle.transform.localScale.y;
@@ -86,5 +89,10 @@ public class Rolling : MonoBehaviour
         {
             ground = false;
         }
+    }
+
+    public float CalculateTime()
+    {
+        return Time.time - startTime;
     }
 }
