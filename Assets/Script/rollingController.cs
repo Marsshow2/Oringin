@@ -8,6 +8,8 @@ public class rollingController : MonoBehaviour
 {
     public Rolling rolling;
 
+    private bool faceMode;
+
     // Update is called once per frame
     void Update()
     {
@@ -19,15 +21,30 @@ public class rollingController : MonoBehaviour
         {
             text = sr.ReadToEnd();
         }
-
+        if (Input.GetKeyDown(KeyCode.M)) faceMode = true;
+        if (Input.GetKeyDown(KeyCode.N)) faceMode = false;
         //Jaw extending
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)||text=="True")
+        if(faceMode)
         {
-            rolling.jawing = true;
+            if (text=="True")
+            {
+                rolling.jawing = true;
+            }
+            if (text=="False")
+            {
+                rolling.jawing = false;
+            }
         }
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0)||text=="False")
+        else
         {
-            rolling.jawing = false;
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                rolling.jawing = true;
+            }
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
+            {
+                rolling.jawing = false;
+            }
         }
     }
 
