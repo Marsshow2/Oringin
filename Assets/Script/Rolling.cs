@@ -6,6 +6,7 @@ public class Rolling : MonoBehaviour
 {
     public AudioClip[] SoundTrack_Jawing = new AudioClip[5];
     public AudioClip[] SoundTrack_Collision = new AudioClip[5];
+    public AudioClip[] SoundTrack_Death = new AudioClip[5];
 
     public Vector3 RebirthPosition;
     private float BounceAngle; 
@@ -104,5 +105,11 @@ public class Rolling : MonoBehaviour
     public float CalculateTime()
     {
         return Time.time - startTime;
+    }
+
+    public void Death()
+    {
+        AudioManager.instance.AudioPlay(SoundTrack_Death[Random.Range(0, 5)]);
+        transform.position = RebirthPosition;
     }
 }

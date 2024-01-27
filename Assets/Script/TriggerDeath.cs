@@ -8,7 +8,7 @@ public class TriggerDeath : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            collision.gameObject.transform.position = collision.gameObject.GetComponent<Rolling>().RebirthPosition;
+            collision.gameObject.GetComponent<Rolling>().Death();
         }
     }
 }
