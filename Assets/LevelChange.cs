@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class LevelChange : MonoBehaviour
 {
+    public AudioClip SoundTrack_Success;
+
     public int Nextlevel;
-    public Text time;
+    public Text time, hint;
     public float calculatedTime;
     public float delayTime = 0.5f;
 
@@ -20,7 +22,11 @@ public class LevelChange : MonoBehaviour
             //UI here
             calculatedTime = collision.gameObject.GetComponent<Rolling>().CalculateTime();
             if(!levelKey)
+            {
+                AudioManager.instance.AudioPlay(SoundTrack_Success);
                 time.text = calculatedTime.ToString();
+                hint.text = "Laugh to next level!";
+            }
 
             levelKey = true;
         }

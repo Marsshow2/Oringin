@@ -22,11 +22,11 @@ public class rollingController : MonoBehaviour
         */
 
         //Jaw extending
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             rolling.jawing = true;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
         {
             rolling.jawing = false;
         }

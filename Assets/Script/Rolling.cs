@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Rolling : MonoBehaviour
 {
-    public AudioClip SoundTrack_Jawing, SoundTrack_Collision;
+    public AudioClip[] SoundTrack_Jawing = new AudioClip[5];
+    public AudioClip[] SoundTrack_Collision = new AudioClip[5];
 
     public Vector3 RebirthPosition;
     private float BounceAngle; 
 
     public bool jawing;
     private bool jawLock;
-    private float jawScale = 3.0f;
-    private float jawForce = 5f;
+    private float jawScale = 2.5f;
+    private float jawForce = 6f;
 
     private float RotationSpeed = 1f;
     private float moveSpeed = 2f;
@@ -51,7 +52,7 @@ public class Rolling : MonoBehaviour
         {
             if (jawLock)
             {
-                AudioManager.instance.AudioPlay(SoundTrack_Jawing);
+                AudioManager.instance.AudioPlay(SoundTrack_Jawing[Random.Range(0, 5)]);
                 transform.localScale = new Vector3(transform.localScale.x, scaleY+jawScale, transform.localScale.z);
                 triangle.GetComponent<SpriteRenderer>().enabled = false;
                 if(ground)
@@ -83,7 +84,12 @@ public class Rolling : MonoBehaviour
     {
         if(collision.gameObject.tag=="Ground")
         {
-
+            if(!ground)
+            {
+                int tmp = Random.Range(0, 5);
+                //Debug.Log(tmp);
+                AudioManager.instance.AudioPlay(SoundTrack_Collision[tmp]);
+            }
             ground = true;
         }
     }
@@ -91,7 +97,6 @@ public class Rolling : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            AudioManager.instance.AudioPlay(SoundTrack_Collision);
             ground = false;
         }
     }
