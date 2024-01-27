@@ -1,0 +1,4 @@
+repository "Oringin@wechat_os_qy010ja_lgooxuh_ga8gsol6c@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
