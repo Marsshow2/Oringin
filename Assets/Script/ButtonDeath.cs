@@ -7,6 +7,8 @@ public class ButtonDeath : MonoBehaviour
     //public GameObject InitialPoint;
     public Vector3 InitialPosition;
 
+    public AudioClip SoundTrack_Death;
+
     private void Start()
     {
         GetComponent<SpriteRenderer>().enabled = false;
@@ -16,6 +18,7 @@ public class ButtonDeath : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
+            AudioManager.instance.AudioPlay(SoundTrack_Death);
             collision.gameObject.transform.position = collision.gameObject.GetComponent<Rolling>().RebirthPosition;
         }
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rolling : MonoBehaviour
 {
+    public AudioClip SoundTrack_Jawing, SoundTrack_Collision;
+
     public Vector3 RebirthPosition;
     private float BounceAngle; 
 
@@ -49,6 +51,7 @@ public class Rolling : MonoBehaviour
         {
             if (jawLock)
             {
+                AudioManager.instance.AudioPlay(SoundTrack_Jawing);
                 transform.localScale = new Vector3(transform.localScale.x, scaleY+jawScale, transform.localScale.z);
                 triangle.GetComponent<SpriteRenderer>().enabled = false;
                 if(ground)
@@ -81,6 +84,7 @@ public class Rolling : MonoBehaviour
     {
         if(collision.gameObject.tag=="Ground")
         {
+
             ground = true;
         }
     }
@@ -88,6 +92,7 @@ public class Rolling : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            AudioManager.instance.AudioPlay(SoundTrack_Collision);
             ground = false;
         }
     }
