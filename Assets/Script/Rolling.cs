@@ -12,7 +12,7 @@ public class Rolling : MonoBehaviour
     public bool jawing;
     private bool jawLock;
     private float jawScale = 3.0f;
-    private float jawForce = 8f;
+    private float jawForce = 5f;
 
     private float RotationSpeed = 1f;
     private float moveSpeed = 2f;
@@ -44,7 +44,7 @@ public class Rolling : MonoBehaviour
         else
         {
             triangle.transform.localPosition = new Vector3(0f, -0.71f, 0f);
-            triangle.transform.Rotate(0f, 0f, -180f);
+            triangle.transform.Rotate(0f, 0f, 180f);
         }
         
         if (jawing)
@@ -56,11 +56,10 @@ public class Rolling : MonoBehaviour
                 triangle.GetComponent<SpriteRenderer>().enabled = false;
                 if(ground)
                 {
-                    var dir = (triangle.transform.position - transform.position).normalized;
                     if(transform.up.y>0)
-                        GetComponent<Rigidbody2D>().AddForce(dir * jawForce,ForceMode2D.Impulse);
+                        this.GetComponent<Rigidbody2D>().AddForce(transform.up * jawForce,ForceMode2D.Impulse);
                     else
-                        GetComponent<Rigidbody2D>().AddForce(-dir * jawForce, ForceMode2D.Impulse);
+                        this.GetComponent<Rigidbody2D>().AddForce(-transform.up * jawForce, ForceMode2D.Impulse);
                     ground = false;
                 }
                 jawLock = false;
