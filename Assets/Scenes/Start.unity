@@ -1036,7 +1036,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1797921894}
         m_TargetAssemblyTypeName: StartLevel, Assembly-CSharp
-        m_MethodName: MaskingFirstEvent
+        m_MethodName: Firstlevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
