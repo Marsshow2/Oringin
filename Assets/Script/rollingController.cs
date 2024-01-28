@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using NativeWebSocket;
 using UnityEngine;
 
 public class rollingController : MonoBehaviour
@@ -10,30 +12,47 @@ public class rollingController : MonoBehaviour
 
     private bool faceMode;
 
+    private WebSocket webSocket;
+
+    private bool jawing;
+    private string mes;
+
+    private async void Start()
+    {
+        webSocket = new WebSocket("ws://127.0.0.1:8001");
+
+        webSocket.OnMessage += message =>
+        {
+            var msg = BitConverter.ToString(message);
+            mes = msg;
+            jawing = msg == "31";
+        };
+
+        webSocket.OnError += e =>
+        {
+            Debug.Log("Error! " + e);
+        };
+
+        await webSocket.Connect();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        var text = "";
-
-        //internet interface
-        /*
-        var req = WebRequest.Create("http://"+ReadData(System.IO.Directory.GetCurrentDirectory()+"/Path.txt") +"/") as HttpWebRequest;
-
-        using (var sr = new StreamReader(req.GetResponse().GetResponseStream()))
-        {
-            text = sr.ReadToEnd();
-        }*/
+        #if !UNITY_WEBGL || UNITY_EDITOR
+        webSocket.DispatchMessageQueue();
+        #endif
 
         if (Input.GetKeyDown(KeyCode.M)) faceMode = true;
         if (Input.GetKeyDown(KeyCode.N)) faceMode = false;
         //Jaw extending
         if(faceMode)
         {
-            if (text=="True")
+            if (jawing)
             {
                 rolling.jawing = true;
             }
-            if (text=="False")
+            if (!jawing)
             {
                 rolling.jawing = false;
             }
