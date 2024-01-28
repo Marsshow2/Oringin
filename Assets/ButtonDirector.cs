@@ -8,12 +8,14 @@ public class ButtonDirector : MonoBehaviour
 
     public void ButtonExit()
     {
+        Debug.Log("Exit");
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public void ButtonHome()
     {
+        Debug.Log("Home");
         levelChange.GoHome();
     }
 }

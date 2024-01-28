@@ -18,11 +18,12 @@ public class DarkMask : MonoBehaviour
     }
     private void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.U))
         {
             tickLock = true;
             lockTime = Time.time;
-        }
+        }*/
         if(tickLock)
         {
             if(Time.time-lockTime<=1)
@@ -33,7 +34,7 @@ public class DarkMask : MonoBehaviour
             else
             {
                 tick = 100;
-                SceneManager.LoadScene("Level0");
+                //SceneManager.LoadScene("Level0");
             }
             if(tick>0.6f) thisImage.canvasRenderer.SetColor(new Vector4(0, 0, 0, 1-tick/0.6f));
             otherImage.transform.localScale = new Vector3(tickx, tickx, 1); 
@@ -45,6 +46,31 @@ public class DarkMask : MonoBehaviour
                 stick=(1-(Time.time-startTime/1.0f));
                 stickx=tick*59f+59f;
             }
+        }
+    }
+
+    public void ToggleDark()
+    {
+        tickLock = true;
+        lockTime = Time.time;
+    }
+
+    public void Masking()
+    {
+        if (tickLock)
+        {
+            if (Time.time - lockTime <= 1)
+            {
+                tick = ((Time.time - lockTime) / 1.0f);
+                tickx = 60f - tick * 59f;
+            }
+            else
+            {
+                tick = 100;
+                //SceneManager.LoadScene("Level0");
+            }
+            if (tick > 0.6f) thisImage.canvasRenderer.SetColor(new Vector4(0, 0, 0, 1 - tick / 0.6f));
+            otherImage.transform.localScale = new Vector3(tickx, tickx, 1);
         }
     }
 }

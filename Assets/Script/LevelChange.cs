@@ -14,7 +14,13 @@ public class LevelChange : MonoBehaviour
     public float delayTime = 0.5f;
 
     private bool levelKey;
-    
+
+    //Masking
+    public Image thisImage, otherImage;
+    private float tick, tickx, stick, stickx;
+    private bool tickLock;
+    private float lockTime, startTime;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag=="Player")
@@ -56,5 +62,46 @@ public class LevelChange : MonoBehaviour
     public void GoHome()
     {
         SceneManager.LoadScene("Start");
+    }
+
+    public void Masking()
+    {
+        if (tickLock)
+        {
+            if (Time.time - lockTime <= 1)
+            {
+                tick = ((Time.time - lockTime) / 1.0f);
+                tickx = 60f - tick * 59f;
+            }
+            else
+            {
+                tick = 100;
+                //SceneManager.LoadScene("Level0");
+                GoNextlevel();
+            }
+            if (tick > 0.6f) thisImage.canvasRenderer.SetColor(new Vector4(0, 0, 0, 1 - tick / 0.6f));
+            otherImage.transform.localScale = new Vector3(tickx, tickx, 1);
+        }
+    }
+
+    public void MaskingHome()
+    {
+        if (tickLock)
+        {
+            if (Time.time - lockTime <= 1)
+            {
+                tick = ((Time.time - lockTime) / 1.0f);
+                tickx = 60f - tick * 59f;
+            }
+            else
+            {
+                tick = 100;
+                //SceneManager.LoadScene("Level0");
+                GoHome();
+            }
+            if (tick > 0.6f) thisImage.canvasRenderer.SetColor(new Vector4(0, 0, 0, 1 - tick / 0.6f));
+            otherImage.transform.localScale = new Vector3(tickx, tickx, 1);
+        }
+
     }
 }

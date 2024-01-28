@@ -30,6 +30,7 @@ public class Rolling : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
         startTime = Time.time;
         GetComponent<SpriteRenderer>().enabled = false;
         scaleY = transform.localScale.y;
