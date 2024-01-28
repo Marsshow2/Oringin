@@ -46,6 +46,15 @@ public class LevelChange : MonoBehaviour
 
     private void GoNextlevel()
     {
+        if(Nextlevel==0)
+        {
+            GoHome();
+        }
         SceneManager.LoadScene("Level" + Nextlevel);
+    }
+
+    public void GoHome()
+    {
+        SceneManager.LoadScene("Start");
     }
 }

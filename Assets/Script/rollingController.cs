@@ -19,7 +19,7 @@ public class rollingController : MonoBehaviour
 
     private async void Start()
     {
-        webSocket = new WebSocket("ws://127.0.0.1:8001");
+        webSocket = new WebSocket(ReadData(System.IO.Directory.GetCurrentDirectory() + "/Path.txt"));
 
         webSocket.OnMessage += message =>
         {
@@ -74,7 +74,7 @@ public class rollingController : MonoBehaviour
     {
         FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None);
         StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
-        if (null == sr) return "192.168.6.155:8008";
+        //if (null == sr) return "192.168.6.155:8008";
         string str = sr.ReadToEnd();
         sr.Close();
         return str;

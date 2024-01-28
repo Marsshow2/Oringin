@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class StartLevel : MonoBehaviour
 {
     public Image StartMask;
+    public AudioClip SoundTrack_Button;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class StartLevel : MonoBehaviour
 
     public void PointerEnter()
     {
+        AudioManager.instance.AudioPlay(SoundTrack_Button);
         StartMask.canvasRenderer.SetColor(new Vector4(0, 0, 100, 100));
     }
 
@@ -35,7 +37,7 @@ public class StartLevel : MonoBehaviour
     public void Firstlevel()
     {
         StartMask.canvasRenderer.SetColor(new Vector4(0,0,100,100));
-        Cursor.visible = false;
+        //Cursor.visible = false;
         SceneManager.LoadScene("Level0");
     }
 }
