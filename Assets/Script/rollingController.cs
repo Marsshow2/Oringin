@@ -13,14 +13,17 @@ public class rollingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var text = "";
+
         //internet interface
+        /*
         var req = WebRequest.Create("http://"+ReadData(System.IO.Directory.GetCurrentDirectory()+"/Path.txt") +"/") as HttpWebRequest;
 
-        var text = "";
         using (var sr = new StreamReader(req.GetResponse().GetResponseStream()))
         {
             text = sr.ReadToEnd();
-        }
+        }*/
+
         if (Input.GetKeyDown(KeyCode.M)) faceMode = true;
         if (Input.GetKeyDown(KeyCode.N)) faceMode = false;
         //Jaw extending

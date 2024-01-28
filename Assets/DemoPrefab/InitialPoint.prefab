@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5c3844c257c8b47a8f6e222890b9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundTrack_LoadPoint: {fileID: 8300000, guid: bdefc6f283fc4674b858cef3b968e240, type: 3}
 --- !u!58 &2956884785629135067
 CircleCollider2D:
   m_ObjectHideFlags: 0
