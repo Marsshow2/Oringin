@@ -6,11 +6,17 @@ public class PointUpdate : MonoBehaviour
 {
     public AudioClip SoundTrack_LoadPoint;
 
+    private bool FirstTrigger;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag=="Player")
         {
-            AudioManager.instance.AudioPlay(SoundTrack_LoadPoint);
+            if(!FirstTrigger)
+            {
+                AudioManager.instance.AudioPlay(SoundTrack_LoadPoint);
+                FirstTrigger = true;
+            }
             collision.gameObject.GetComponent<Rolling>().RebirthPosition = transform.position;
         }
     }
