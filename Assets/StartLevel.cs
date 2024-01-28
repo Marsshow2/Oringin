@@ -6,8 +6,15 @@ using UnityEngine.UI;
 
 public class StartLevel : MonoBehaviour
 {
+    //public Button playButton;
     public Image StartMask;
     public AudioClip SoundTrack_Button;
+    
+    //Masking
+    public Image thisImage, otherImage;
+    private float tick, tickx, stick, stickx;
+    private bool tickLock;
+    private float lockTime, startTime;
 
     private void Start()
     {
@@ -17,10 +24,7 @@ public class StartLevel : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("Level0");
-        }
+        MaskingFirst();
     }
 
     public void PointerEnter()
@@ -39,5 +43,34 @@ public class StartLevel : MonoBehaviour
         StartMask.canvasRenderer.SetColor(new Vector4(0,0,100,100));
         //Cursor.visible = false;
         SceneManager.LoadScene("Level0");
+    }
+
+
+    public void MaskingFirstEvent()
+    {
+        tickLock = true;
+        lockTime = Time.time;
+        //playButton.transform.position = new Vector3(-100, 0, 0);
+    }
+
+    public void MaskingFirst()
+    {
+        if (tickLock)
+        {
+            if (Time.time - lockTime <= 1)
+            {
+                tick = ((Time.time - lockTime) / 1.0f);
+                tickx = 60f - tick * 59f;
+            }
+            else
+            {
+                tick = 100;
+                //SceneManager.LoadScene("Level0");
+                Firstlevel();
+            }
+            if (tick > 0.6f) thisImage.canvasRenderer.SetColor(new Vector4(0, 0, 0, 1 - tick / 0.6f));
+            otherImage.transform.localScale = new Vector3(tickx, tickx, 1);
+        }
+
     }
 }

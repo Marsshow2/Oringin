@@ -1666,8 +1666,8 @@ MonoBehaviour:
   hint: {fileID: 1248123677}
   calculatedTime: 0
   delayTime: 0.5
-  thisImage: {fileID: 0}
-  otherImage: {fileID: 0}
+  thisImage: {fileID: 1318684676}
+  otherImage: {fileID: 1809096061}
 --- !u!114 &115941294
 MonoBehaviour:
   m_ObjectHideFlags: 0

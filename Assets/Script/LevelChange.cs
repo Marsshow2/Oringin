@@ -48,6 +48,7 @@ public class LevelChange : MonoBehaviour
                 Invoke("GoNextlevel", delayTime);
             }
         }
+        MaskingHome();
     }
 
     private void GoNextlevel()
@@ -66,6 +67,7 @@ public class LevelChange : MonoBehaviour
 
     public void Masking()
     {
+        tickLock = true;
         if (tickLock)
         {
             if (Time.time - lockTime <= 1)
@@ -82,6 +84,11 @@ public class LevelChange : MonoBehaviour
             if (tick > 0.6f) thisImage.canvasRenderer.SetColor(new Vector4(0, 0, 0, 1 - tick / 0.6f));
             otherImage.transform.localScale = new Vector3(tickx, tickx, 1);
         }
+    }
+    public void MaskingHomeEvent()
+    {
+        tickLock = true;
+        lockTime = Time.time;
     }
 
     public void MaskingHome()

@@ -16,6 +16,6 @@ public class ButtonDirector : MonoBehaviour
     public void ButtonHome()
     {
         Debug.Log("Home");
-        levelChange.GoHome();
+        levelChange.MaskingHomeEvent();
     }
 }
